@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Saved News Articles</h2>
+<a href="{{ url_for('fetch_news') }}">Fetch Latest News</a>
+
+<table>
+    <tr>
+        <th>Title</th><th>Content</th><th>Source</th><th>Actions</th>
+    </tr>
+    {% for news in news_articles %}
+    <tr>
+        <td>{{ news.title }}</td>
+        <td>{{ news.content[:100] }}...</td>
+        <td>{{ news.source }}</td>
+        <td>
+            <a href="{{ url_for('delete_news', id=news.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

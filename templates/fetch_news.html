@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Fetch News from API</h2>
+<form method="POST" action="{{ url_for('save_news') }}">
+    <table>
+        <tr>
+            <th>Select</th><th>Title</th><th>Content</th><th>Source</th>
+        </tr>
+        {% for article in news_data %}
+        <tr>
+            <td>
+                <input type="checkbox" name="selected_news" value="{{ article.title }}|||{{ article.description }}|||{{ article.source.name }}">
+            </td>
+            <td>{{ article.title }}</td>
+            <td>{{ article.description[:100] }}...</td>
+            <td>{{ article.source.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Save Selected News</button>
+</form>
+<a href="{{ url_for('index') }}">Back to Saved News</a>
+{% endblock %}

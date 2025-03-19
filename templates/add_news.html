@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% if news_article %}Edit{% else %}Add{% endif %} News</h2>
+
+<form method="POST">
+    <input type="text" name="title" placeholder="Title" value="{{ news_article.title if news_article else '' }}" required>
+    <textarea name="content" placeholder="Content" required>{{ news_article.content if news_article else '' }}</textarea>
+    <input type="text" name="source" placeholder="Source" value="{{ news_article.source if news_article else '' }}">
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}
